@@ -24,16 +24,18 @@ def draw():
 def rock_animation():
     animation = animate(Rock,"bounce_end",duration = 4 ,pos = next(postionss))
 
+
 def ship_target():
     x = random.randint(100,700)
     y = random.randint(100,500)
     spaceship.target = (x,y)
     shipangle = spaceship.angle_to(spaceship.target)
-    animation = animate(spaceship, duration = 1,angle = shipangle)
+    animation = animate(spaceship, duration = 1,angle = shipangle,on_finished = ship_animation)
+
+def ship_animation():
+    animation = animate(spaceship,"accel_decel",duration = 3,pos = spaceship.target,on_finished = ship_target)
 
 ship_target()
-
-
 
 def update():
     pass
